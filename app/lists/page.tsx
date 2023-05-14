@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import Link from "next/link";
-import { redirect } from 'next/navigation';
-import { Header } from "../components/Header";
+import { SideNav } from "../../components/SideNaw";
+import { Header } from "../../components/Header";
 
 const prisma = new PrismaClient();
 
@@ -10,5 +9,5 @@ export const metadata = {
 };
 
 export default async function Page() {
-  redirect('/lists');
+  return (<span>"Select a list"</span>);
 }
