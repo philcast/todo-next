@@ -1,0 +1,7 @@
+.todosListItem button {
+  display: none;
+}
+
+.todosListItem:hover button {
+  display: block;
+}
