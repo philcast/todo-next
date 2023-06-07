@@ -3,7 +3,7 @@
 import { PrismaClient } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 const prisma = new PrismaClient();
- 
+
 export async function addTodo(todoListId: string, title) {
   await prisma.todo.create({
     data: {
@@ -12,7 +12,7 @@ export async function addTodo(todoListId: string, title) {
       todoListId,
     },
   });
-  revalidatePath('/');
+  revalidatePath('/lists/[selectedListId]');
 }
 
 export async function deleteTodo(id: string) {
@@ -21,9 +21,9 @@ export async function deleteTodo(id: string) {
       id,
     },
   });
-  revalidatePath('/');
+  revalidatePath('/lists/[selectedListId]');
 }
- 
+
 export async function updateTodoDone(id: string, done: boolean) {
   await prisma.todo.update({
     where: {
@@ -33,7 +33,7 @@ export async function updateTodoDone(id: string, done: boolean) {
       done,
     },
   });
-  revalidatePath('/');
+  revalidatePath('/lists/[selectedListId]');
 }
 
 export async function updateTodoTitle(id: string, done: boolean) {
@@ -45,5 +45,5 @@ export async function updateTodoTitle(id: string, done: boolean) {
       done,
     },
   });
-  revalidatePath('/');
+  revalidatePath('/lists/[selectedListId]');
 }

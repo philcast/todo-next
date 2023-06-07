@@ -1,12 +1,14 @@
 "use client";
 
 import { Card, IconButton, Input, List, ListItem, Popover, PopoverContent, PopoverHandler } from "./MaterialTailwind";
-import { PlusIcon } from "./HeroIcons";
+import { PlusIcon, TrashIcon } from "./HeroIcons";
 import { useState, useTransition } from "react";
-import { addTodoList } from "../app/_actions";
+import { addTodoList, removeTodoList } from "../app/_actions";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import type { SideNavTodoLists } from "../app/lists/layout";
+
+import styles from './SideNav.module.css';
 
 type SidebarProps = {
   todoLists: SideNavTodoLists;
@@ -24,8 +26,12 @@ export function SideNav({ todoLists: lists }: SidebarProps) {
 
   const onNewListAdded = () => {
     if (canAddNewList) {
-      addTodoList(newListTitle);
+      startTransition(() => addTodoList(newListTitle));
     }
+  }
+
+  const onNewListRemoved = (id: string) => {
+    startTransition(() => removeTodoList(id));
   }
 
   const [openPopover, setOpenPopover] = useState(false);
@@ -37,13 +43,21 @@ export function SideNav({ todoLists: lists }: SidebarProps) {
   return (
     <Card className="relative w-full max-w-[20rem] p-4 shadow-xl shadow-light-blue-900/5 bg-light-blue-100 flex-col">
       <List>
-        {lists.map((list) => (
-          <Link key={list.id} href={`/lists/${list.id}`} className="flex">
-            <ListItem selected={list.id === selectedListId}>
+        {lists.map((list) => {
+          const listId = list.id;
+          return <Link key={listId} href={`/lists/${listId}`}>
+            <ListItem className={`${styles.todosListItem} flex justify-between`} selected={listId === selectedListId}>
               {list.title}
+              <IconButton
+                size="sm"
+                color="gray"
+                onClick={(e) => { onNewListRemoved(listId); e.preventDefault(); e.stopPropagation(); }}
+              >
+                <TrashIcon className="h-5 w-5" />
+              </IconButton>
             </ListItem>
           </Link>
-        ))}
+        })}
       </List>
       <div className="absolute bottom-4 right-4">
         <Popover open={openPopover} handler={setOpenPopover} placement="top-end">
@@ -69,7 +83,7 @@ export function SideNav({ todoLists: lists }: SidebarProps) {
                 color={canAddNewList ? "blue" : "blue-gray"}
                 disabled={!canAddNewList}
                 className="!absolute right-1 top-1 rounded"
-                onClick={() => startTransition(onNewListAdded)}
+                onClick={onNewListAdded}
               >
                 <PlusIcon className="h-5 w-5" />
               </IconButton>
@@ -78,6 +92,6 @@ export function SideNav({ todoLists: lists }: SidebarProps) {
           </PopoverContent>
         </Popover>
       </div>
-    </Card>
+    </Card >
   )
 }
