@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { Header } from "../../../components/Header";
-import { Card, Typography } from "../../../components/MaterialTailwind";
+import { Card, Typography } from "@/components/MaterialTailwind";
 import { TodosTableEditableRow } from "./TodosTableEditableRow";
 import { TodosTableFooter } from "./TodosTableFooter";
 import { Suspense } from "react";

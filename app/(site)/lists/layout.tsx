@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { SideNav } from "../../components/SideNav";
+import { SideNav } from "./SideNav";
 
 const prisma = new PrismaClient();
 
@@ -21,7 +21,7 @@ async function getSideNavTodoLists() {
 
 export type SideNavTodoLists = AwaitedReturnType<typeof getSideNavTodoLists>;
 
-export default async function Layout(props) {
+export default async function Layout(props: { children: React.ReactNode }) {
   const lists = await getSideNavTodoLists();
 
   return (

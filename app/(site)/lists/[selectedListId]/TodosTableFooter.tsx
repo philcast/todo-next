@@ -1,8 +1,8 @@
 "use client";
 
-import { useTransition, useState } from "react";
-import { PlusIcon } from "../../../components/HeroIcons";
-import { IconButton, Input, Popover, PopoverContent, PopoverHandler, Spinner } from "../../../components/MaterialTailwind";
+import { useTransition, useState, ChangeEventHandler } from "react";
+import { PlusIcon } from "@/components/HeroIcons";
+import { IconButton, Input, Popover, PopoverContent, PopoverHandler, Spinner } from "@/components/MaterialTailwind";
 import { addTodo } from "./_actions";
 
 type TodosTableFooterProps = { todoListId: string; otherTodosTitles: string[] };
@@ -10,7 +10,8 @@ type TodosTableFooterProps = { todoListId: string; otherTodosTitles: string[] };
 export function TodosTableFooter({ todoListId, otherTodosTitles }: TodosTableFooterProps) {
   const [isLoading, startTransition] = useTransition();
   const [newTodoTitle, setNewTodoTitle] = useState<string | undefined>(undefined);
-  const onNewTodoTitleChange = ({ target }) => setNewTodoTitle(target.value);
+  
+  const onNewTodoTitleChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => setNewTodoTitle(target.value);
 
   const canAddNewTodo = !isLoading && newTodoTitle && newTodoTitle.length > 0 && !otherTodosTitles.includes(newTodoTitle);
 

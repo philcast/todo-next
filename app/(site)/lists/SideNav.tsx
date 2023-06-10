@@ -1,12 +1,12 @@
 "use client";
 
-import { Card, IconButton, Input, List, ListItem, Popover, PopoverContent, PopoverHandler } from "./MaterialTailwind";
-import { PlusIcon, TrashIcon } from "./HeroIcons";
-import { useState, useTransition } from "react";
-import { addTodoList, removeTodoList } from "../app/_actions";
+import { Card, IconButton, Input, List, ListItem, Popover, PopoverContent, PopoverHandler } from "@/components/MaterialTailwind";
+import { PlusIcon, TrashIcon } from "@/components/HeroIcons";
+import { ChangeEventHandler, useState, useTransition } from "react";
+import { addTodoList, removeTodoList } from "./_actions";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import type { SideNavTodoLists } from "../app/lists/layout";
+import type { SideNavTodoLists } from "./layout";
 
 import styles from './SideNav.module.css';
 
@@ -20,7 +20,7 @@ export function SideNav({ todoLists: lists }: SidebarProps) {
   const [, startTransition] = useTransition();
 
   const [newListTitle, setNewListTitle] = useState<string | undefined>(undefined);
-  const onNewListTitleChange = ({ target }) => setNewListTitle(target.value);
+  const onNewListTitleChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => setNewListTitle(target.value);
 
   const canAddNewList = newListTitle && newListTitle.length > 0 && !lists.map((list) => list.title).includes(newListTitle);
 

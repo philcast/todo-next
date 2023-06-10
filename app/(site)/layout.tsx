@@ -1,5 +1,5 @@
-import { Header } from "../components/Header";
-import { ThemeProvider } from "../components/MaterialTailwind";
+import { Header } from "@/components/Header";
+import { ThemeProvider } from "@/components/MaterialTailwind";
 
 // These styles apply to every route in the application
 import './globals.css';

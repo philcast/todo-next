@@ -1,10 +1,10 @@
 "use client";
 
 import { useTransition } from "react";
-import { Checkbox, IconButton, Spinner, Typography } from "../../../components/MaterialTailwind";
+import { Checkbox, IconButton, Spinner, Typography } from "@/components/MaterialTailwind";
 import { deleteTodo, updateTodoDone } from "./_actions";
-import { TrashIcon } from "../../../components/HeroIcons";
-import { DateFormater } from "../../../components/DateFormater";
+import { TrashIcon } from "@heroicons/react/24/solid";
+import { DateFormater } from "@/components/DateFormater";
 
 type TodosTableEditableRowProps = { id: string; title: string; done: boolean, createdAt: Date };
 

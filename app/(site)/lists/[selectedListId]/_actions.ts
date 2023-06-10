@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 const prisma = new PrismaClient();
 
-export async function addTodo(todoListId: string, title) {
+export async function addTodo(todoListId: string, title: string) {
   await prisma.todo.create({
     data: {
       title,
