@@ -1,8 +1,8 @@
 "use client";
 
-import { useTransition, useState, ChangeEventHandler } from "react";
-import { PlusIcon } from "@/components/HeroIcons";
+import { ChangeEventHandler, useState, useTransition } from "react";
 import { IconButton, Input, Popover, PopoverContent, PopoverHandler, Spinner } from "@/components/MaterialTailwind";
+import { PlusIcon } from "@/components/HeroIcons";
 import { addTodo } from "./_actions";
 
 type TodosTableFooterProps = { todoListId: string; otherTodosTitles: string[] };

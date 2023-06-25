@@ -7,6 +7,9 @@ import {
   Avatar,
   Button,
   Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
   Checkbox,
   Chip,
   IconButton,
@@ -17,11 +20,11 @@ import {
   ListItemSuffix,
   Navbar,
   Popover,
-  PopoverHandler,
   PopoverContent,
+  PopoverHandler,
   Spinner,
   ThemeProvider,
-  Typography,
+  Typography
 } from "@material-tailwind/react";
 
 export {
@@ -31,6 +34,9 @@ export {
   Avatar,
   Button,
   Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
   Checkbox,
   Chip,
   IconButton,

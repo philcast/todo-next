@@ -1,17 +1,24 @@
 import { PrismaClient } from "@prisma/client";
 import { SideNav } from "./SideNav";
-
-const prisma = new PrismaClient();
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth/next";
+import { prisma } from "@/lib/prisma";
 
 export const metadata = {
   title: 'My Todo lists',
 };
 
-async function getSideNavTodoLists() {
+async function getSideNavTodoLists(userId?: string) {
+  if (!userId) {
+    return Promise.resolve([]);
+  }
   return await prisma.todoList.findMany({
     select: {
       id: true,
       title: true,
+    },
+    where: {
+      userId,
     },
     orderBy: {
       title: 'asc',
@@ -22,7 +29,12 @@ async function getSideNavTodoLists() {
 export type SideNavTodoLists = AwaitedReturnType<typeof getSideNavTodoLists>;
 
 export default async function Layout(props: { children: React.ReactNode }) {
-  const lists = await getSideNavTodoLists();
+  const session = await getServerSession(authOptions);
+  const userId = session?.user?.id;
+  
+  console.time("🚀 ~ file: layout.tsx:36 ~ Layout ~ getSideNavTodoLists:");
+  const lists = await getSideNavTodoLists(userId);
+  console.timeEnd("🚀 ~ file: layout.tsx:36 ~ Layout ~ getSideNavTodoLists:");
 
   return (
     <div className="flex h-full items-stretch gap-5">

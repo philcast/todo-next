@@ -1,8 +1,7 @@
 'use server';
 
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
-const prisma = new PrismaClient();
 
 export async function addTodo(todoListId: string, title: string) {
   await prisma.todo.create({

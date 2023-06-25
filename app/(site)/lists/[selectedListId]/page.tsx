@@ -1,10 +1,8 @@
-import { PrismaClient } from "@prisma/client";
 import { Card, Typography } from "@/components/MaterialTailwind";
+import { Suspense } from "react";
 import { TodosTableEditableRow } from "./TodosTableEditableRow";
 import { TodosTableFooter } from "./TodosTableFooter";
-import { Suspense } from "react";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
 
 async function getTodoList(id: string) {
   return await prisma.todoList.findUniqueOrThrow({
@@ -22,7 +20,7 @@ async function getTodoList(id: string) {
           createdAt: true
         },
         orderBy: {
-          done: 'asc',
+          title: 'asc',
         }
       }
     }
@@ -30,7 +28,10 @@ async function getTodoList(id: string) {
 }
 
 export default async function Page({ params }: { params: { selectedListId: string } }) {
+  
+  console.time("🚀 ~ file: page.tsx:33 ~ Page ~ getTodoList:")
   const todoList = await getTodoList(params.selectedListId);
+  console.timeEnd("🚀 ~ file: page.tsx:33 ~ Page ~ getTodoList:")
 
   return (
     <Suspense fallback={<div>Loading...</div>}>

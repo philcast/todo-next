@@ -3,5 +3,5 @@ export const metadata = {
 };
 
 export default async function Page() {
-  return (<span>S&quot;elect a list&quot;</span>);
+  return <span>Select a list</span>;
 }

@@ -3,28 +3,36 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
   provider          = "postgresql"
   url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  extensions = [citext]
 }
 
 model TodoList {
   id        String   @id @default(uuid())
-  title     String   @unique
+  userId    String
+  title     String   @db.Citext
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   todos     Todo[]
+
+  @@unique([userId, title])
+  @@index(userId)
 }
 
 model Todo {
   id         String   @id @default(uuid())
-  title      String
+  title      String   @db.Citext
   done       Boolean  @default(false)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   todoList   TodoList @relation(fields: [todoListId], references: [id], onDelete: Cascade)
   todoListId String
+
+  @@unique([todoListId, title])
 }
