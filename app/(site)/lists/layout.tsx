@@ -32,9 +32,7 @@ export default async function Layout(props: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);
   const userId = session?.user?.id;
   
-  console.time("🚀 ~ file: layout.tsx:36 ~ Layout ~ getSideNavTodoLists:");
   const lists = await getSideNavTodoLists(userId);
-  console.timeEnd("🚀 ~ file: layout.tsx:36 ~ Layout ~ getSideNavTodoLists:");
 
   return (
     <div className="flex h-full items-stretch gap-5">

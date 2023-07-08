@@ -1,7 +1,8 @@
 'use client';
 
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { signIn, signOut } from 'next-auth/react';
-import { Avatar } from './MaterialTailwind';
+import { Button } from '@/components/ui/button';
 import { useTransition } from 'react';
 
 interface SignInButtonProps {
@@ -22,21 +23,19 @@ export function SignInButton({user}: SignInButtonProps) {
     <form onSubmit={() => false}>
       {user && (
         <>
-          <Avatar
-            size="md"
-            variant="circular"
-            src={user.image ?? undefined}
-            alt="user.name ?? 'unknown''"
-          />
+          <Avatar>
+            <AvatarImage src={user.image ?? undefined} alt="user.name ?? 'unknown''"/>
+            <AvatarFallback>?</AvatarFallback>
+          </Avatar>
           <button className="ml-3" onClick={() => signOut()}>
             Sign Out
           </button>
         </>
       )}
       {!user && (
-        <button disabled={isTransition} onClick={onSignInClicked}>
+        <Button disabled={isTransition} onClick={onSignInClicked}>
           Sign In
-        </button>
+        </Button>
       )}
     </form>
   );
