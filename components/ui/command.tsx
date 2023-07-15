@@ -1,6 +1,7 @@
 'use client';
 
 import { DialogProps } from '@radix-ui/react-dialog';
+import { VariantProps, cva } from 'class-variance-authority';
 import { Command as CommandPrimitive } from 'cmdk';
 import * as React from 'react';
 import { LuSearch } from 'react-icons/lu';
@@ -100,19 +101,31 @@ const CommandSeparator = React.forwardRef<
 ));
 CommandSeparator.displayName = CommandPrimitive.Separator.displayName;
 
-const CommandItem = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Item>
->(({ className, ...props }, ref) => (
-  <CommandPrimitive.Item
-    ref={ref}
-    className={cn(
-      'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
-      className
-    )}
-    {...props}
-  />
-));
+const commandItemVariants = cva(
+  'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+  {
+    variants: {
+      selection: {
+        inactive: '',
+        active:
+          'bg-selected text-selected-foreground aria-selected:bg-selected aria-selected:text-selected-foreground font-bold border-selected-foreground border-r-2',
+      },
+    },
+    defaultVariants: {
+      selection: 'inactive',
+    },
+  }
+);
+
+export interface CommandItemProps
+  extends React.ComponentPropsWithoutRef<typeof CommandPrimitive.Item>,
+    VariantProps<typeof commandItemVariants> {}
+
+const CommandItem = React.forwardRef<React.ElementRef<typeof CommandPrimitive.Item>, CommandItemProps>(
+  ({ className, selection, ...props }, ref) => (
+    <CommandPrimitive.Item ref={ref} className={cn(commandItemVariants({ selection, className }))} {...props} />
+  )
+);
 
 CommandItem.displayName = CommandPrimitive.Item.displayName;
 

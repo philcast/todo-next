@@ -3,7 +3,6 @@ import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 import { Suspense } from 'react';
 
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { authOptions } from '@/lib/auth';
 
 import { GoogleSigninCard } from './GoogleSigninCard';

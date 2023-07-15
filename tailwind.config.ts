@@ -41,6 +41,10 @@ const config = {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
         },
+        selected: {
+          DEFAULT: 'hsl(var(--selected))',
+          foreground: 'hsl(var(--selected-foreground))',
+        },
         popover: {
           DEFAULT: 'hsl(var(--popover))',
           foreground: 'hsl(var(--popover-foreground))',
@@ -55,6 +59,8 @@ const config = {
         'warning-foreground': 'hsl(var(--warning-foreground))',
         error: 'hsl(var(--error))',
         'error-foreground': 'hsl(var(--error-foreground))',
+        header: 'hsl(var(--header))',
+        'header-foreground': 'hsl(var(--header-foreground))',
       },
       borderRadius: {
         lg: 'var(--radius)',

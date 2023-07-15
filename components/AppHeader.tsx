@@ -14,7 +14,7 @@ type Props = {
 
 export function AppHeader({ title, user }: Props) {
   return (
-    <header className="w-full px-4 py-2 lg:py-4 border-b">
+    <header className="w-full px-4 py-2 lg:py-4 border-b bg-header text-header-foreground">
       <div className="flex items-center h-10 gap-4">
         <LuListChecks className="w-7 h-7" />
         <h1 className="flex-grow">{title}</h1>
