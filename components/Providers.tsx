@@ -1,13 +1,15 @@
 'use client';
 
-import { PropsWithChildren } from 'react';
 import { SessionProvider } from 'next-auth/react';
-import { ThemeProvider } from '@material-tailwind/react/context/theme';
+import { ThemeProvider } from 'next-themes';
+import { PropsWithChildren } from 'react';
 
 export function Providers({ children }: PropsWithChildren<{}>) {
   return (
-    <ThemeProvider>
-      <SessionProvider>{children}</SessionProvider>;
-    </ThemeProvider>
+    <SessionProvider>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        {children}
+      </ThemeProvider>
+    </SessionProvider>
   );
 }

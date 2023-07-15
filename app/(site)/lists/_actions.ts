@@ -1,9 +1,11 @@
 'use server';
 
-import { authOptions } from '@/lib/auth';
-import { getServerSession } from 'next-auth/next';
-import { prisma } from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
+
+import { getServerSession } from 'next-auth/next';
+
+import { authOptions } from '@/lib/auth';
+import { prisma } from '@/lib/prisma';
 
 export async function addTodoList(title: string) {
   const session = await getServerSession(authOptions);

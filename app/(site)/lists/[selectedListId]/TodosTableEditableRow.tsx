@@ -1,59 +1,59 @@
-"use client";
+'use client';
 
-import { Checkbox, IconButton, Spinner, Typography } from "@/components/MaterialTailwind";
-import { deleteTodo, updateTodoDone } from "./_actions";
-import { DateFormater } from "@/components/DateFormater";
-import { TrashIcon } from "@heroicons/react/24/solid";
-import { useTransition } from "react";
+import { useTransition } from 'react';
+import { LuTrash } from 'react-icons/lu';
 
-type TodosTableEditableRowProps = { id: string; title: string; done: boolean, createdAt: Date };
+import { DateFormater } from '@/components/DateFormater';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Spinner } from '@/components/ui/spinner';
+import { TableCell, TableRow } from '@/components/ui/table';
+
+import { deleteTodo, updateTodoDone } from './_actions';
+
+type TodosTableEditableRowProps = { id: string; title: string; done: boolean; createdAt: Date };
 
 export function TodosTableEditableRow({ id, title, done, createdAt }: TodosTableEditableRowProps) {
   const [isLoading, startTransition] = useTransition();
 
-  // const [isEditing, setIsEditing] = useState(false);
-
-  function onDoneChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const checked = event.target.checked;
-    startTransition(() => updateTodoDone(id, checked));
+  function onDoneChange(done: boolean) {
+    startTransition(() => updateTodoDone(id, done));
   }
 
   function onDeleted() {
     startTransition(() => deleteTodo(id));
   }
 
-
   return (
-    <tr className="even:bg-blue-gray-50/50">
-      <td className="px-4">
-        <Checkbox color="green" defaultChecked={done} onChange={onDoneChange} disabled={isLoading}
-          className="rounded-full w-8 h-8 hover:before:opacity-0 hover:scale-105 bg-red-500/25 border-red-500/50 transition-all"  
+    <TableRow className="even:bg-blue-gray-50/50">
+      <TableCell className="px-4">
+        <Checkbox
+          defaultChecked={done}
+          onCheckedChange={onDoneChange}
+          disabled={isLoading}
+          variant="validation"
+          shape="rounded"
+          className="w-8 h-8"
         />
-      </td>
-      <td className="px-4">
-        <Typography variant="small" color="blue-gray" className="font-normal capitalize">
+      </TableCell>
+      <TableCell className="px-4">
+        <span color="blue-gray" className="font-normal capitalize">
           {title}
-        </Typography>
-      </td>
-      <td className="px-4">
-        <Typography variant="small" color="blue-gray" className="font-normal">
+        </span>
+      </TableCell>
+      <TableCell className="px-4">
+        <span color="blue-gray" className="font-normal">
           <DateFormater date={createdAt} />
-        </Typography>
-      </td>
-      <td className="px-4">
-       <div className="flex justify-end items-center">
-            {isLoading && <Spinner className="mr-2" />}
-            <IconButton
-            size="sm"
-            color="gray"
-            className="rounded"
-            onClick={() => startTransition(onDeleted)}
-            disabled={isLoading}
-            >
-            <TrashIcon className="h-5 w-5" />
-          </IconButton>
+        </span>
+      </TableCell>
+      <TableCell className="px-4">
+        <div className="flex justify-end items-center">
+          {isLoading && <Spinner className="mr-2" />}
+          <Button variant="secondary" size="icon" onClick={() => startTransition(onDeleted)} disabled={isLoading}>
+            <LuTrash className="h-5 w-5" />
+          </Button>
         </div>
-      </td>
-    </tr>
+      </TableCell>
+    </TableRow>
   );
 }
