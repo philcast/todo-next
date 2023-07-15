@@ -1,5 +1,5 @@
-import GoogleProvider from 'next-auth/providers/google';
 import { NextAuthOptions } from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -8,28 +8,28 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
     }),
   ],
-  pages: {  
+  pages: {
     signIn: '/login',
   },
   session: {
     strategy: 'jwt',
   },
   callbacks: {
-    redirect({url, baseUrl}) {
+    redirect({ url, baseUrl }) {
       return url.startsWith(baseUrl) ? url : baseUrl;
     },
-    session({session, token}) {
+    session({ session, token }) {
       if (session.user) {
         session.user.id = token.sub as string;
       }
       return session;
     },
-    jwt({token, user, account, profile}) {
+    jwt({ token, user, account, profile }) {
       if (user?.id) {
         token.sub = user.id;
       }
       return token;
     },
   },
-  debug: process.env.NODE_ENV === 'development',
+  debug: process.env.NEXTAUTH_DEBUG === 'true',
 };

@@ -1,9 +1,11 @@
 // These styles apply to every route in the application
-import './globals.css';
+import { getServerSession } from 'next-auth/next';
+
 import { AppHeader } from '@/components/AppHeader';
 import { Providers } from '@/components/Providers';
 import { authOptions } from '@/lib/auth';
-import { getServerSession,  } from 'next-auth/next';
+
+import './globals.css';
 
 export const metadata = {
   title: 'Todo',
@@ -18,14 +20,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOptions);
-  
+
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="h-screen overflow-y-hidden">
         <Providers>
           <div className="mx-auto max-w-screen-2xl h-screen flex flex-col">
-            <AppHeader title="My TODOs" user={session?.user}/>
-            <main className="grow">{children}</main>
+            <AppHeader title="My TODOs" user={session?.user} />
+            <main className="mt-3 lg:mt-4 grow">{children}</main>
           </div>
         </Providers>
       </body>

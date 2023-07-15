@@ -1,5 +1,8 @@
 # Ignore artifacts:
 .devcontainer
 .next
-doc
+.vscode
+node_modules
+docs
 prisma
+package-lock.json

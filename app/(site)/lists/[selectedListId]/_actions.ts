@@ -1,7 +1,8 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
+
+import { prisma } from '@/lib/prisma';
 
 export async function addTodo(todoListId: string, title: string) {
   await prisma.todo.create({

@@ -1,10 +1,15 @@
 'use client';
 
-import { PropsWithChildren } from 'react';
 import { SessionProvider } from 'next-auth/react';
+import { ThemeProvider } from 'next-themes';
+import { PropsWithChildren } from 'react';
 
 export function Providers({ children }: PropsWithChildren<{}>) {
   return (
-    <SessionProvider>{children}</SessionProvider>
+    <SessionProvider>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        {children}
+      </ThemeProvider>
+    </SessionProvider>
   );
 }
