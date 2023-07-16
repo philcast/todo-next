@@ -3,7 +3,7 @@
 import { useTransition } from 'react';
 import { LuTrash } from 'react-icons/lu';
 
-import { DateFormater } from '@/components/DateFormater';
+import { DateFormater } from '@/components/date-formater';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Spinner } from '@/components/ui/spinner';

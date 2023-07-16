@@ -1,6 +1,6 @@
 import { LuListChecks } from 'react-icons/lu';
 
-import { SignInButton } from './SignInButton';
+import { SignInButton } from './sign-in-button';
 import { ThemeToggle } from './theme-toogle';
 
 type Props = {

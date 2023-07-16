@@ -3,7 +3,7 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
-import { SideNav } from './SideNav';
+import { SideNav } from './side-nav';
 
 export const metadata = {
   title: 'My Todo lists',
