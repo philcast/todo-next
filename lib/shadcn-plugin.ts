@@ -1,70 +1,159 @@
 import plugin from 'tailwindcss/plugin';
 
-export const shadcnPlugin = plugin(function ({ addBase }) {
-  addBase({
-    ':root': {
-      '--background': '0 0% 100%',
-      '--foreground': '222.2 84% 4.9%',
-      '--muted': '210 40% 96.1%',
-      '--muted-foreground': '215.4 16.3% 46.9%',
-      '--popover': '0 0% 100%',
-      '--popover-foreground': '222.2 84% 4.9%',
-      '--card': '0 0% 100%',
-      '--card-foreground': '222.2 84% 4.9%',
-      '--border': '214.3 31.8% 91.4%',
-      '--input': '214.3 31.8% 91.4%',
-      '--primary': '222.2 47.4% 11.2%',
-      '--primary-foreground': '210 40% 98%',
-      '--secondary': '210 40% 96.1%',
-      '--secondary-foreground': '222.2 47.4% 11.2%',
-      '--accent': '210 40% 96.1%',
-      '--accent-foreground': '222.2 47.4% 11.2%',
-      '--destructive': '0 84.2% 60.2%',
-      '--destructive-foreground': '210 40% 98%',
-      '--success': '128 70% 47%',
-      '--success-foreground': '48 96% 89%',
-      '--warning': '38 92% 50%',
-      '--warning-foreground': '48 96% 89%',
-      '--error': 'var(--destructive)',
-      '--error-foreground': 'var(--destructive-foreground)',
-      '--ring': '215 20.2% 65.1%',
-      '--radius': '0.5rem',
-    },
-    '.dark': {
-      '--background': '222.2 84% 4.9%',
-      '--foreground': '210 40% 98%',
-      '--muted': '217.2 32.6% 17.5%',
-      '--muted-foreground': '215 20.2% 65.1%',
-      '--popover': '222.2 84% 4.9%',
-      '--popover-foreground': '210 40% 98%',
-      '--card': '222.2 84% 4.9%',
-      '--card-foreground': '210 40% 98%',
-      '--border': '217.2 32.6% 17.5%',
-      '--input': '217.2 32.6% 17.5%',
-      '--primary': '210 40% 98%',
-      '--primary-foreground': '222.2 47.4% 11.2%',
-      '--secondary': '217.2 32.6% 17.5%',
-      '--secondary-foreground': '210 40% 98%',
-      '--accent': '217.2 32.6% 17.5%',
-      '--accent-foreground': '210 40% 98%',
-      '--destructive': '0 62.8% 30.6%',
-      '--destructive-foreground': '0 85.7% 97.3%',
-      '--success': '128 70% 47%',
-      '--success-foreground': '222.2 47.4% 11.2%',
-      '--warning': '38 92% 50%',
-      '--warning-foreground': '222.2 47.4% 11.2%',
-      '--error': '0 62.8% 45%',
-      '--error-foreground': 'var(--destructive-foreground)',
-      '--ring': '217.2 32.6% 17.5%',
-    },
-  });
+export const shadcnPlugin = plugin(
+  function ({ addBase }) {
+    addBase({
+      ':root': {
+        '--background': '0 0% 100%',
+        '--foreground': '222.2 84% 4.9%',
+        '--muted': '210 40% 96.1%',
+        '--muted-foreground': '215.4 16.3% 46.9%',
+        '--popover': '0 0% 100%',
+        '--popover-foreground': '222.2 84% 4.9%',
+        '--card': '0 0% 100%',
+        '--card-foreground': '222.2 84% 4.9%',
+        '--border': '214.3 31.8% 91.4%',
+        '--input': '214.3 31.8% 91.4%',
+        '--primary': '222.2 47.4% 11.2%',
+        '--primary-foreground': '210 40% 98%',
+        '--secondary': '210 40% 96.1%',
+        '--secondary-foreground': '222.2 47.4% 11.2%',
+        '--accent': '190 98% 98.1%',
+        '--accent-foreground': '222.2 47.4% 11.2%',
+        '--selected': '270 50% 98.1%',
+        '--selected-foreground': '270 80% 41.2%',
+        '--destructive': '0 84.2% 60.2%',
+        '--destructive-foreground': '210 40% 98%',
+        '--success': '128 70% 47%',
+        '--success-foreground': '48 96% 89%',
+        '--warning': '38 92% 50%',
+        '--warning-foreground': '48 96% 89%',
+        '--error': 'var(--destructive)',
+        '--error-foreground': 'var(--destructive-foreground)',
+        '--header': '220 80% 47%',
+        '--header-foreground': '48 96% 89%',
+        '--ring': '215 20.2% 65.1%',
+        '--radius': '0.5rem',
+      },
+      '.dark': {
+        '--background': '222.2 84% 4.9%',
+        '--foreground': '210 40% 98%',
+        '--muted': '217.2 32.6% 17.5%',
+        '--muted-foreground': '215 20.2% 65.1%',
+        '--popover': '222.2 84% 4.9%',
+        '--popover-foreground': '210 40% 98%',
+        '--card': '222.2 84% 4.9%',
+        '--card-foreground': '210 40% 98%',
+        '--border': '217.2 32.6% 17.5%',
+        '--input': '217.2 32.6% 17.5%',
+        '--primary': '210 40% 98%',
+        '--primary-foreground': '222.2 47.4% 11.2%',
+        '--secondary': '217.2 32.6% 17.5%',
+        '--secondary-foreground': '210 40% 98%',
+        '--accent': '217.2 32.6% 17.5%',
+        '--accent-foreground': '210 40% 98%',
+        '--selected': '270 80% 22.2%',
+        '--selected-foreground': '270 50% 98.1%',
+        '--destructive': '0 62.8% 30.6%',
+        '--destructive-foreground': '0 85.7% 97.3%',
+        '--success': '128 70% 47%',
+        '--success-foreground': '222.2 47.4% 11.2%',
+        '--warning': '38 92% 50%',
+        '--warning-foreground': '222.2 47.4% 11.2%',
+        '--error': '0 62.8% 45%',
+        '--error-foreground': 'var(--destructive-foreground)',
+        '--header': '220 90% 37%',
+        '--header-foreground': '48 96% 89%',
+        '--ring': '217.2 32.6% 17.5%',
+      },
+    });
 
-  addBase({
-    '*': {
-      '@apply border-border': {},
+    addBase({
+      '*': {
+        '@apply border-border': {},
+      },
+      body: {
+        '@apply bg-background text-foreground': {},
+      },
+    });
+  },
+  {
+    theme: {
+      container: {
+        center: true,
+        padding: '2rem',
+        screens: {
+          '2xl': '1400px',
+        },
+      },
+      extend: {
+        colors: {
+          border: 'hsl(var(--border))',
+          input: 'hsl(var(--input))',
+          ring: 'hsl(var(--ring))',
+          background: 'hsl(var(--background))',
+          foreground: 'hsl(var(--foreground))',
+          primary: {
+            DEFAULT: 'hsl(var(--primary))',
+            foreground: 'hsl(var(--primary-foreground))',
+          },
+          secondary: {
+            DEFAULT: 'hsl(var(--secondary))',
+            foreground: 'hsl(var(--secondary-foreground))',
+          },
+          destructive: {
+            DEFAULT: 'hsl(var(--destructive))',
+            foreground: 'hsl(var(--destructive-foreground))',
+          },
+          muted: {
+            DEFAULT: 'hsl(var(--muted))',
+            foreground: 'hsl(var(--muted-foreground))',
+          },
+          accent: {
+            DEFAULT: 'hsl(var(--accent))',
+            foreground: 'hsl(var(--accent-foreground))',
+          },
+          selected: {
+            DEFAULT: 'hsl(var(--selected))',
+            foreground: 'hsl(var(--selected-foreground))',
+          },
+          popover: {
+            DEFAULT: 'hsl(var(--popover))',
+            foreground: 'hsl(var(--popover-foreground))',
+          },
+          card: {
+            DEFAULT: 'hsl(var(--card))',
+            foreground: 'hsl(var(--card-foreground))',
+          },
+          success: 'hsl(var(--success))',
+          'success-foreground': 'hsl(var(--success-foreground))',
+          warning: 'hsl(var(--warning))',
+          'warning-foreground': 'hsl(var(--warning-foreground))',
+          error: 'hsl(var(--error))',
+          'error-foreground': 'hsl(var(--error-foreground))',
+          header: 'hsl(var(--header))',
+          'header-foreground': 'hsl(var(--header-foreground))',
+        },
+        borderRadius: {
+          lg: 'var(--radius)',
+          md: 'calc(var(--radius) - 2px)',
+          sm: 'calc(var(--radius) - 4px)',
+        },
+        keyframes: {
+          'accordion-down': {
+            from: { height: '0' },
+            to: { height: 'var(--radix-accordion-content-height)' },
+          },
+          'accordion-up': {
+            from: { height: 'var(--radix-accordion-content-height)' },
+            to: { height: '0' },
+          },
+        },
+        animation: {
+          'accordion-down': 'accordion-down 0.2s ease-out',
+          'accordion-up': 'accordion-up 0.2s ease-out',
+        },
+      },
     },
-    body: {
-      '@apply bg-background text-foreground': {},
-    },
-  });
-});
+  }
+);

@@ -1,26 +1,18 @@
 'use client';
 
-import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 
 import { ChangeEventHandler, useState, useTransition } from 'react';
-import { LuPlus, LuTrash } from 'react-icons/lu';
+import { LuPlus } from 'react-icons/lu';
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { Input } from '@/components/ui/input';
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from '@/components/ui/navigation-menu';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
-import styles from './SideNav.module.css';
-import { addTodoList, removeTodoList } from './_actions';
+import { addTodoList } from './_actions';
 import type { SideNavTodoLists } from './layout';
 
 type SidebarProps = {
@@ -45,9 +37,9 @@ export function SideNav({ todoLists: lists }: SidebarProps) {
     }
   };
 
-  const onNewListRemoved = (id: string) => {
-    startTransition(() => removeTodoList(id));
-  };
+  // const onNewListRemoved = (id: string) => {
+  //   startTransition(() => removeTodoList(id));
+  // };
 
   const [openPopover, setOpenPopover] = useState(false);
   const triggers = {
@@ -68,7 +60,11 @@ export function SideNav({ todoLists: lists }: SidebarProps) {
             {lists.map((list) => {
               const listId = list.id;
               return (
-                <CommandItem key={listId} onSelect={() => router.push(`/lists/${listId}`)}>
+                <CommandItem
+                  key={listId}
+                  onSelect={() => router.push(`/lists/${listId}`)}
+                  selection={listId === selectedListId ? 'active' : 'inactive'}
+                >
                   <span className="capitalize">{list.title}</span>
                 </CommandItem>
               );

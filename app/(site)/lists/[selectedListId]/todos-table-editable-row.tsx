@@ -3,7 +3,7 @@
 import { useTransition } from 'react';
 import { LuTrash } from 'react-icons/lu';
 
-import { DateFormater } from '@/components/DateFormater';
+import { DateFormater } from '@/components/date-formater';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Spinner } from '@/components/ui/spinner';
@@ -26,7 +26,7 @@ export function TodosTableEditableRow({ id, title, done, createdAt }: TodosTable
 
   return (
     <TableRow className="even:bg-blue-gray-50/50">
-      <TableCell className="px-4">
+      <TableCell className="px-4 py-2">
         <Checkbox
           defaultChecked={done}
           onCheckedChange={onDoneChange}
@@ -36,17 +36,17 @@ export function TodosTableEditableRow({ id, title, done, createdAt }: TodosTable
           className="w-8 h-8"
         />
       </TableCell>
-      <TableCell className="px-4">
+      <TableCell className="px-4 py-2">
         <span color="blue-gray" className="font-normal capitalize">
           {title}
         </span>
       </TableCell>
-      <TableCell className="px-4">
+      <TableCell className="px-4 py-2">
         <span color="blue-gray" className="font-normal">
           <DateFormater date={createdAt} />
         </span>
       </TableCell>
-      <TableCell className="px-4">
+      <TableCell className="px-4 py-2">
         <div className="flex justify-end items-center">
           {isLoading && <Spinner className="mr-2" />}
           <Button variant="secondary" size="icon" onClick={() => startTransition(onDeleted)} disabled={isLoading}>

@@ -4,8 +4,8 @@ import { Card } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { prisma } from '@/lib/prisma';
 
-import { TodosTableEditableRow } from './TodosTableEditableRow';
-import { TodosTableFooter } from './TodosTableFooter';
+import { TodosTableEditableRow } from './todos-table-editable-row';
+import { TodosTableFooter } from './todos-table-footer';
 
 async function getTodoList(id: string) {
   return await prisma.todoList.findUniqueOrThrow({

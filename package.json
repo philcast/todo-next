@@ -6,6 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "format:check": "prettier . --check",
     "format": "prettier --write .",
     "update:interactive": "npx npm-check-updates --interactive --format group",

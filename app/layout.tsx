@@ -1,8 +1,8 @@
 // These styles apply to every route in the application
 import { getServerSession } from 'next-auth/next';
 
-import { AppHeader } from '@/components/AppHeader';
-import { Providers } from '@/components/Providers';
+import { AppHeader } from '@/components/app-header';
+import { Providers } from '@/components/providers';
 import { authOptions } from '@/lib/auth';
 
 import './globals.css';
