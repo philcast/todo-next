@@ -2,10 +2,10 @@
 import { getServerSession } from 'next-auth/next';
 
 import { AppHeader } from '@/components/app-header';
-import { Providers } from '@/components/providers';
 import { authOptions } from '@/lib/auth';
 
 import './globals.css';
+import { Providers } from './providers';
 
 export const metadata = {
   title: 'Todo',

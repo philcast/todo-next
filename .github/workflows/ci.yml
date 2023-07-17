@@ -1,4 +1,4 @@
-name: Code check
+name: CI
 
 on:
   pull_request:
@@ -13,7 +13,7 @@ env:
   NEXTAUTH_URL: 'https://fake.com'
 
 jobs:
-  code-check:
+  continuous-integration:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,3 +33,13 @@ jobs:
 
       - name: Run lint
         run: npm run lint
+
+      - name: Run test
+        run: npm run test:ci
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        if: success() || failure() # run this step even if previous step failed
+        with:
+          name: test-results
+          path: .tests/unit/results/junit.xml
