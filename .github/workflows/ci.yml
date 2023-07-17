@@ -36,3 +36,10 @@ jobs:
 
       - name: Run test
         run: npm run test:ci
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        if: success() || failure() # run this step even if previous step failed
+        with:
+          name: test-results
+          path: .tests/unit/results/junit.xml

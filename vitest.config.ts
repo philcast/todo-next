@@ -13,7 +13,7 @@ export default defineConfig({
     },
     include: ['**/*.test.ts?(x)'],
     outputFile: {
-      junit: '.tests/unit/report/junit.xml',
+      junit: '.tests/unit/results/junit.xml',
     },
     reporters: ['default'],
     coverage: {
