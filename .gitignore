@@ -6,7 +6,7 @@
 .pnp.js
 
 # testing
-/coverage
+/.tests/unit
 
 # next.js
 /.next/

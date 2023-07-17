@@ -7,13 +7,18 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: [path.resolve(__dirname, 'test/setup.ts')],
+    setupFiles: [path.resolve(__dirname, '.tests/setup.ts')],
     env: {
       IS_REACT_ACT_ENVIRONMENT: 'true',
     },
     include: ['**/*.test.ts?(x)'],
+    outputFile: {
+      junit: '.tests/unit/report/junit.xml',
+    },
+    reporters: ['default'],
     coverage: {
-      reporter: ['text', 'html'],
+      reportsDirectory: '.tests/unit/coverage',
+      reporter: ['html'],
     },
   },
   resolve: {
