@@ -1,0 +1,35 @@
+name: Code check
+
+on:
+  pull_request:
+    branches: ['*']
+
+env:
+  DATABASE_URL: 'https://fake.com'
+  SHADOW_DATABASE_URL: 'https://fake.com'
+  GOOGLE_CLIENT_ID: 'fake'
+  GOOGLE_CLIENT_SECRET: 'fake'
+  NEXTAUTH_SECRET: 'fake'
+  NEXTAUTH_URL: 'https://fake.com'
+
+jobs:
+  code-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Run check formatting
+        run: npm run format:check
+
+      - name: Run lint
+        run: npm run lint
