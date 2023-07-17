@@ -6,6 +6,6 @@ import { AppHeader } from '.';
 describe('AppHeader', () => {
   it('Should render the title', () => {
     render(<AppHeader title="My TODOs" />);
-    expect(screen.getByText('My TODO')).toBeInTheDocument();
+    expect(screen.getByText('My TODOs')).toBeInTheDocument();
   });
 });
