@@ -35,7 +35,7 @@ export const shadcnPlugin = plugin(
         '--ring': '215 20.2% 65.1%',
         '--radius': '0.5rem',
       },
-      '.dark': {
+      '[data-theme="dark"]': {
         '--background': '222.2 84% 4.9%',
         '--foreground': '210 40% 98%',
         '--muted': '217.2 32.6% 17.5%',
