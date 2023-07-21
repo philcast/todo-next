@@ -14,7 +14,7 @@ const checkboxVariants = cva(
       variant: {
         default: '',
         validation:
-          'bg-error/50 border-error/100 data-[state=checked]:bg-success data-[state=checked]:border-success/100 hover:before:opacity-0 hover:scale-105 transition-all',
+          'bg-error/50 border-error text-error-foreground data-[state=checked]:bg-success data-[state=checked]:border-success data-[state=checked]:text-success-foreground',
       },
       shape: {
         default: '',

@@ -6,3 +6,4 @@ node_modules
 docs
 prisma
 package-lock.json
+stories
