@@ -1,7 +1,7 @@
 import { LuListChecks } from 'react-icons/lu';
 
 import { SignInButton } from '@/components/sign-in-button';
-import { ThemeToggle } from '@/components/theme-toogle';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 type Props = {
   title: string;

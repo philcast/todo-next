@@ -8,6 +8,8 @@ const config = {
     '@storybook/addon-essentials',
     '@storybook/addon-onboarding',
     '@storybook/addon-interactions',
+    '@storybook/addon-controls',
+    'storybook-addon-swc',
     {
       name: '@storybook/addon-styling',
       options: {
