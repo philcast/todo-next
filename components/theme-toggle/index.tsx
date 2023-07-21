@@ -8,27 +8,48 @@ import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
 export function ThemeToggle() {
-  const { setTheme } = useTheme();
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="hover:bg-header-foreground hover:text-header">
-          <LuSun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <LuMoon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="hover:bg-header-foreground hover:text-header"
+          aria-label="Toggle theme"
+        >
+          <LuSun
+            role="img"
+            aria-label="light-theme-icon"
+            className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+          />
+          <LuMoon
+            role="img"
+            aria-label="dark-theme-icon"
+            className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+          />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>System</DropdownMenuItem>
+        <ThemeDropDownMenuRadioGroup />
       </DropdownMenuContent>
     </DropdownMenu>
+  );
+}
+
+export function ThemeDropDownMenuRadioGroup() {
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
+      <DropdownMenuRadioItem value="light">Light</DropdownMenuRadioItem>
+      <DropdownMenuRadioItem value="dark">Dark</DropdownMenuRadioItem>
+      <DropdownMenuRadioItem value="system">System</DropdownMenuRadioItem>
+    </DropdownMenuRadioGroup>
   );
 }

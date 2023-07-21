@@ -7,7 +7,7 @@ import { PropsWithChildren } from 'react';
 export function Providers({ children }: PropsWithChildren<{}>) {
   return (
     <SessionProvider>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
         {children}
       </ThemeProvider>
     </SessionProvider>
