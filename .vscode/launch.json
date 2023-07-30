@@ -8,6 +8,12 @@
       "type": "node-terminal"
     },
     {
+      "name": "Run storybook",
+      "command": "npm run storybook",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
       "name": "Run application",
       "type": "node",
       "request": "launch",

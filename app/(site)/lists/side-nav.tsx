@@ -53,7 +53,7 @@ export function SideNav({ todoLists: lists }: SidebarProps) {
   return (
     <Card className="relative w-full max-w-[20rem] p-4 shadow-xl shadow-light-blue-900/5 bg-light-blue-100 flex-col">
       <Command>
-        <CommandInput placeholder="Type a menu item or search..." />
+        <CommandInput placeholder="Type a todo list or search..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Todos">

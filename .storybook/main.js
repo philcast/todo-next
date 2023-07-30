@@ -2,7 +2,7 @@
 import path from 'path';
 
 const config = {
-  stories: ['../stories/**/*.mdx', '../components/**/*.stories.@(ts|tsx)'],
+  stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(ts|tsx)', '../components/**/*.stories.@(ts|tsx)'],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',

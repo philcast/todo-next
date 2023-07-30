@@ -1,7 +1,10 @@
 import matchers from '@testing-library/jest-dom/matchers';
+import { configure } from '@testing-library/react';
 import { expect, vi } from 'vitest';
 
 expect.extend(matchers);
+
+configure({ testIdAttribute: 'data-e2e' });
 
 Object.defineProperty(global, 'matchMedia', {
   writable: true,

@@ -31,14 +31,12 @@ async function getTodoList(id: string) {
 }
 
 export default async function Page({ params }: { params: { selectedListId: string } }) {
-  console.time('🚀 ~ file: page.tsx:33 ~ Page ~ getTodoList:');
   const todoList = await getTodoList(params.selectedListId);
-  console.timeEnd('🚀 ~ file: page.tsx:33 ~ Page ~ getTodoList:');
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <>
-        <h4>{todoList.title}</h4>
+        <h2>{todoList.title}</h2>
         <Card className="mt-10 overflow-scroll w-full">
           <Table className="w-full min-w-max table-auto text-left">
             <TableHeader>

@@ -2,7 +2,7 @@
 
 import { useTheme } from 'next-themes';
 import * as React from 'react';
-import { LuMoon, LuSun } from 'react-icons/lu';
+import { LuPalette } from 'react-icons/lu';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -23,16 +23,7 @@ export function ThemeToggle() {
           className="hover:bg-header-foreground hover:text-header"
           aria-label="Toggle theme"
         >
-          <LuSun
-            role="img"
-            aria-label="light-theme-icon"
-            className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
-          />
-          <LuMoon
-            role="img"
-            aria-label="dark-theme-icon"
-            className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
-          />
+          <LuPalette role="img" aria-label="theme-icon" className="h-6 w-6" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -46,10 +37,16 @@ export function ThemeDropDownMenuRadioGroup() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
-      <DropdownMenuRadioItem value="light">Light</DropdownMenuRadioItem>
-      <DropdownMenuRadioItem value="dark">Dark</DropdownMenuRadioItem>
-      <DropdownMenuRadioItem value="system">System</DropdownMenuRadioItem>
+    <DropdownMenuRadioGroup value={theme} onValueChange={setTheme} data-e2e="theme-dropdown-items">
+      <DropdownMenuRadioItem value="light" aria-label="Light">
+        Light
+      </DropdownMenuRadioItem>
+      <DropdownMenuRadioItem value="dark" aria-label="Dark">
+        Dark
+      </DropdownMenuRadioItem>
+      <DropdownMenuRadioItem value="system" aria-label="System">
+        System
+      </DropdownMenuRadioItem>
     </DropdownMenuRadioGroup>
   );
 }

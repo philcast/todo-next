@@ -1,5 +1,5 @@
-import { waitFor } from '@testing-library/dom';
-import { fireEvent, render } from '@testing-library/react';
+import { render, waitForElementToBeRemoved } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'next-themes';
 import { describe, it } from 'vitest';
 
@@ -15,44 +15,47 @@ describe('ThemeToggle', () => {
     expect(getByLabelText('Toggle theme')).toBeInTheDocument();
   });
 
-  it.skip('should toggle the theme when the button is clicked', async () => {
-    const { getByLabelText } = render(
+  it('should toggle the theme when the button is clicked', async () => {
+    const { getByLabelText, findByLabelText } = render(
       <ThemeProvider attribute="data-theme" defaultTheme="light">
         <ThemeToggle />
       </ThemeProvider>
     );
-    const button = getByLabelText('Toggle theme');
+    const toggleThemeButton = getByLabelText('Toggle theme');
+    expect(toggleThemeButton).toBeInTheDocument();
 
-    let sun = getByLabelText('light-theme-icon');
-    expect(sun).toBeInTheDocument();
-    expect(sun).toHaveClass('rotate-0 scale-100');
+    userEvent.click(toggleThemeButton);
 
-    let moon = getByLabelText('dark-theme-icon');
-    expect(moon).toBeInTheDocument();
-    expect(moon).toHaveClass('rotate-90 scale-0');
+    let lightRadio = (await findByLabelText('Light')) as HTMLInputElement;
+    let darkRadio = (await findByLabelText('Dark')) as HTMLInputElement;
+    let systemRadio = (await findByLabelText('System')) as HTMLInputElement;
 
-    fireEvent.click(button);
-
-    const lightRadio = getByLabelText('Light');
-    await waitFor(() => expect(lightRadio).toBeInTheDocument());
+    expect(lightRadio).toBeInTheDocument();
     expect(lightRadio).toBeChecked();
 
-    const darkRadio = getByLabelText('Dark');
-    await waitFor(() => expect(darkRadio).toBeInTheDocument());
+    expect(darkRadio).toBeInTheDocument();
     expect(darkRadio).not.toBeChecked();
 
-    fireEvent.click(darkRadio);
+    expect(systemRadio).toBeInTheDocument();
+    expect(systemRadio).not.toBeChecked();
 
-    await waitFor(() => expect(darkRadio).not.toBeInTheDocument());
+    userEvent.click(darkRadio);
 
-    sun = getByLabelText('light-theme-icon');
-    await waitFor(() => expect(sun).toBeInTheDocument());
-    fireEvent.animationEnd(sun);
-    expect(sun.getBoundingClientRect().x).toBe(0);
+    await waitForElementToBeRemoved(() => getByLabelText('Dark'));
 
-    moon = getByLabelText('dark-theme-icon');
-    await waitFor(() => expect(moon).toBeInTheDocument());
-    fireEvent.animationEnd(moon);
-    expect(moon.getBoundingClientRect().x).toBeGreaterThan(0);
+    userEvent.click(toggleThemeButton);
+
+    lightRadio = (await findByLabelText('Light')) as HTMLInputElement;
+    darkRadio = (await findByLabelText('Dark')) as HTMLInputElement;
+    systemRadio = (await findByLabelText('System')) as HTMLInputElement;
+
+    expect(lightRadio).toBeInTheDocument();
+    expect(lightRadio).not.toBeChecked();
+
+    expect(darkRadio).toBeInTheDocument();
+    expect(darkRadio).toBeChecked();
+
+    expect(systemRadio).toBeInTheDocument();
+    expect(systemRadio).not.toBeChecked();
   });
 });
