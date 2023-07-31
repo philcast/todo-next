@@ -1,6 +1,9 @@
 import plugin from 'tailwindcss/plugin';
 
-export const corePlugin = plugin(
+/**
+ * A Tailwind CSS plugin that provides the Shadcn UI core styles and configurations for the application.
+ */
+export const coreShadcnPlugin = plugin(
   function ({ addBase }) {
     addBase({
       ':root': {

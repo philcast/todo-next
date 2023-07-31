@@ -1,5 +1,10 @@
 import plugin from 'tailwindcss/plugin';
 
+/**
+ * A Tailwind CSS plugin that adds base styles for typography elements such as headings, paragraphs, blockquotes, and code blocks.
+ * @param {Object} options - The options object.
+ * @param {Function} options.addBase - The function used to add base styles to the document.
+ */
 export const typographyPlugin = plugin(function ({ addBase }) {
   addBase({
     h1: {

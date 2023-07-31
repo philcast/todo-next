@@ -3,5 +3,5 @@ export const metadata = {
 };
 
 export default async function Page() {
-  return <span>Select a list</span>;
+  return <p className="text-xl text-muted-foreground">Select a list</p>;
 }
